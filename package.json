@@ -1,0 +1,10 @@
+{
+  "name": "@autom8te/create-starter-templates",
+  "author": "autom8te",
+  "version": "0.0.1",
+  "description": "Starter templates for creating NextJS or Express projects.",
+  "license": "MIT",
+  "bin": {
+    "create-starter-templates": "create-starter-templates.js"
+  }
+}
