@@ -61,8 +61,12 @@ function createNextJsProject(projectName) {
   // Create the .env.local template file
   createEnvLocalFile(
     projectPath,
-    '.env',
-    ['SUPABASE_URL=', 'SUPABASE_KEY=', 'SUPABASE_JWT_SECRET='].join('\n')
+    '.env.local',
+    [
+      'NEXT_PUBLIC_BASE_URL=http://localhost:8100',
+      'NEXT_PUBLIC_SUPABASE_URL=https://<replace-me>.supabase.co',
+      'NEXT_PUBLIC_SUPABASE_KEY=<replace-me>',
+    ].join('\n')
   );
 
   // Rename .npmignore to .gitignore
