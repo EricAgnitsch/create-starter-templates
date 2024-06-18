@@ -14,13 +14,16 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@hookform/resolvers": "^3.6.0",
     "@nextui-org/react": "^2.4.2",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.43.5",
     "framer-motion": "^11.2.10",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.52.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",
