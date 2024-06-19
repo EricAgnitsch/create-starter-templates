@@ -43,7 +43,6 @@ if (options.nextjs) {
 }
 
 function createNextJsProject(projectName) {
-  console.log('name ', projectName);
   const templatePath = path.join(__dirname, 'templates/nextjs');
   const projectPath = path.join(process.cwd(), 'nextjs-' + projectName);
 
@@ -52,11 +51,11 @@ function createNextJsProject(projectName) {
   console.log(`Copied template from ${templatePath} to ${projectPath}`);
 
   // Updating files to use user's project name input
-  // replaceProjectName(projectName, [
-  //   path.join(projectPath, 'package.json'),
-  //   path.join(projectPath, 'docker-compose-dev.yml'),
-  //   // Add other file paths that needs 'project_name' updated
-  // ]);
+  replaceProjectName(projectName, [
+    path.join(projectPath, 'package.json'),
+    path.join(projectPath, 'docker-compose.yml'),
+    // Add other file paths that needs 'project_name' updated
+  ]);
 
   // Create the .env.local template file
   createEnvLocalFile(
