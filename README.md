@@ -25,7 +25,11 @@ Before starting, ensure you have the following installed and configured:
 
 ## Getting Started
 
-Create a new Next.js app with `npx @autom8te/create-starter-templates@latest <project_name>`. Replace `project_name` with your camelcase project name.
+- Create a new Next.js app with `npx @autom8te/create-starter-templates@latest -n <project_name> --nextjs`. Replace `project_name` with your camelCase project name
+- Navigate to new project folder
+- Run `yarn`
+- Run `yarn dev`
+- Go to `http://localhost:3000` in browser
 
 ### Supabase Project Setup
 
