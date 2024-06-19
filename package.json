@@ -7,9 +7,6 @@
   "bin": {
     "create-starter-templates": "create-starter-templates.js"
   },
-  "publishConfig": {
-    "registry": "http://192.168.4.85:4873"
-  },
   "dependencies": {
     "commander": "^12.1.0",
     "fs-extra": "^11.2.0",
