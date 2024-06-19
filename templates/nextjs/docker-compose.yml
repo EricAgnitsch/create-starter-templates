@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  nextjs-app:
+    container_name: nextjs-{{project_name}}
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_BASE_URL: ''
+        NEXT_PUBLIC_SUPABASE_URL: ''
+        NEXT_PUBLIC_SUPABASE_KEY: ''
+    restart: always
+    stdin_open: true
+    tty: true
+    ports:
+      - '3001:3001'
