@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  express-server:
+    container_name: express-{{project_name}}
+    restart: always
+    build:
+      context: .
+    env_file:
+      - .env.local
+    stdin_open: true
+    tty: true
+    ports:
+      - '8100:8100'
