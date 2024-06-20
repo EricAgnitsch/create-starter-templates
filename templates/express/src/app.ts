@@ -4,7 +4,7 @@ import { corsHandler } from 'middlewares/cors-handler';
 import { globalErrorHandler } from 'middlewares/global-error-handler';
 
 const app = express();
-const port = 5000;
+const port = 8100;
 
 app.use(corsHandler);
 app.use(bodyParser.json({ limit: '1mb' }));
