@@ -1,7 +1,7 @@
+import { corsHandler } from '@middlewares/cors-handler';
+import { globalErrorHandler } from '@middlewares/global-error-handler';
 import bodyParser from 'body-parser';
 import express from 'express';
-import { corsHandler } from 'middlewares/cors-handler';
-import { globalErrorHandler } from 'middlewares/global-error-handler';
 
 const app = express();
 const port = 8100;

@@ -54,7 +54,7 @@ function createExpressProject(projectName) {
   // Updating files to use user's project name input
   replaceProjectName(projectName, [
     path.join(projectPath, 'package.json'),
-    // path.join(projectPath, 'docker-compose.yml'),
+    path.join(projectPath, 'docker-compose.yml'),
     // Add other file paths that needs 'project_name' updated
   ]);
 
