@@ -1,4 +1,4 @@
-import {createClient} from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 import EnvironmentVariables from '../environment-variables';
 
 const supabaseUrl = EnvironmentVariables.SUPABASE_URL;

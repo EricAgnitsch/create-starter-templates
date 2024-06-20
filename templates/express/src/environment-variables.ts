@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ path: '.env.local' });
 
 const EnvironmentVariables = {
   BASE_URL: process.env.BASE_URL,
