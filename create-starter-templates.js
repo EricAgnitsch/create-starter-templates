@@ -7,7 +7,11 @@ const {
   initializeGitRepository,
   renameNpmignoreToGitignore,
 } = require('./helpers/git');
-const { createEnvLocalFile, replaceProjectName } = require('./helpers/file');
+const {
+  createEnvLocalFile,
+  replaceProjectName,
+  removeTemplateExtension,
+} = require('./helpers/file');
 
 const program = new Commander.Command();
 
@@ -58,17 +62,10 @@ function createExpressProject(projectName) {
     // Add other file paths that needs 'project_name' updated
   ]);
 
-  // Create the .env.local template file
-  createEnvLocalFile(
-    projectPath,
-    '.env.local',
-    [
-      'BASE_URL=https://<replace-me>',
-      'SUPABASE_URL=https://<replace-me>.supabase.co',
-      'SUPABASE_KEY=<replace-me>',
-      'SUPABASE_JWT_SECRET=<replace-me>',
-    ].join('\n')
-  );
+  // Create the .env files
+  removeTemplateExtension(projectPath, '.env.local.template');
+  removeTemplateExtension(projectPath, '.env.docker.template');
+  removeTemplateExtension(projectPath, '.env.shared.template');
 
   // Rename .npmignore to .gitignore
   renameNpmignoreToGitignore(projectPath);

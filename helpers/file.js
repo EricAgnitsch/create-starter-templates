@@ -9,6 +9,19 @@ function createEnvLocalFile(projectPath, fileName, envContent) {
   console.log('.env.local file created with preset values');
 }
 
+function removeTemplateExtension(projectPath, fileName) {
+  const oldFilePath = path.join(projectPath, fileName);
+  const newFileName = fileName.replace('.template', '');
+  const newFilePath = path.join(projectPath, newFileName);
+
+  if (fs.existsSync(oldFilePath)) {
+    fs.renameSync(oldFilePath, newFilePath);
+    console.log(`Renamed ${fileName} to ${newFileName}`);
+  } else {
+    console.log(`${fileName} not found, skipping rename.`);
+  }
+}
+
 function applyTemplate(filePath, data) {
   const template = fs.readFileSync(filePath, 'utf8');
   const compileTemplate = Handlebars.compile(template);
@@ -31,6 +44,6 @@ function replaceProjectName(projectName, filesToReplace) {
 
 module.exports = {
   createEnvLocalFile,
-  applyTemplate,
+  removeTemplateExtension,
   replaceProjectName,
 };
