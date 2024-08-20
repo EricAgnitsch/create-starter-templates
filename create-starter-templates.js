@@ -59,6 +59,7 @@ function createExpressProject(projectName) {
   replaceProjectName(projectName, [
     path.join(projectPath, 'package.json'),
     path.join(projectPath, 'docker-compose.yml'),
+    path.join(projectPath, '.env.docker.template'),
     // Add other file paths that needs 'project_name' updated
   ]);
 
