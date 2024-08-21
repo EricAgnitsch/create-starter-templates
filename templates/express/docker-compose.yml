@@ -6,9 +6,19 @@ services:
     restart: always
     build:
       context: .
-    env_file:
-      - .env.local
+    environment:
+      - DOCKER_ENV=true
+      - BASE_URL
+      - SUPABASE_URL
+      - SUPABASE_KEY
+      - SUPABASE_JWT_SECRET
     stdin_open: true
     tty: true
     ports:
-      - '8100:8100'
+      - '{{be_port}}8:{{be_port}}8'
+    networks:
+      - supabase_network_express-{{project_name}}
+
+networks:
+  supabase_network_express-{{project_name}}:
+    external: true

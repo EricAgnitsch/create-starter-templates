@@ -3,7 +3,7 @@ import EnvironmentVariables from 'src/environment-variables';
 
 // ** The BASE_URL defined in `.env.local` can be your deployed URL that you'd wish to add to cors. **
 // EG: If you own `www.example.com` and host your frontend there, use `https://www.example.com` as your BASE_URL.
-const allowedOrigins = ['http://localhost:3000', EnvironmentVariables.BASE_URL];
+const allowedOrigins = [EnvironmentVariables.BASE_URL];
 
 export const corsHandler = cors({
   origin: (

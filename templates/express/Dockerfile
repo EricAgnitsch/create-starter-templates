@@ -7,6 +7,6 @@ RUN yarn install
 
 COPY . ./
 
-EXPOSE 8100
+EXPOSE {{be_port}}8
 
 CMD ["yarn", "start"]
