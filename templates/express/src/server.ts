@@ -1,6 +1,6 @@
 import app from './app';
 
-const port = 8100;
+const port = {{be_port}}8;
 const HOST = '0.0.0.0';
 
 const startServer = async () => {

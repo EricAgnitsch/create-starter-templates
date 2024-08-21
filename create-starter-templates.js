@@ -9,15 +9,17 @@ const {
 } = require('./helpers/git');
 const {
   createEnvLocalFile,
-  replaceProjectName,
   removeTemplateExtension,
+  replaceTemplateVariables,
 } = require('./helpers/file');
+const { initializeLocalSupabase } = require('./helpers/supabase');
 
 const program = new Commander.Command();
 
 program
   .requiredOption('-n, --name <projectName>', 'Specify the base project name')
   .option('--express', 'Create an Express project')
+  .option('--be-port <port>', 'Specify the port for the backend server')
   // .option('--expo', 'Create an Expo project')
   .option('--nextjs', 'Create a Next.js project')
   .parse(process.argv);
@@ -34,7 +36,7 @@ if (!options.express && !options.expo && !options.nextjs) {
 
 if (options.express) {
   console.log('create express project');
-  createExpressProject(options.name);
+  createExpressProject(options.name, options.bePort);
 }
 
 // if (options.expo) {
@@ -47,7 +49,9 @@ if (options.nextjs) {
   createNextJsProject(options.name);
 }
 
-function createExpressProject(projectName) {
+function createExpressProject(projectName, bePort) {
+  bePort = bePort ? bePort : '8100';
+
   const templatePath = path.join(__dirname, 'templates/express');
   const projectPath = path.join(process.cwd(), 'express-' + projectName);
 
@@ -55,13 +59,21 @@ function createExpressProject(projectName) {
   fs.copySync(templatePath, projectPath);
   console.log(`Copied template from ${templatePath} to ${projectPath}`);
 
-  // Updating files to use user's project name input
-  replaceProjectName(projectName, [
-    path.join(projectPath, 'package.json'),
-    path.join(projectPath, 'docker-compose.yml'),
-    path.join(projectPath, '.env.docker.template'),
-    // Add other file paths that needs 'project_name' updated
-  ]);
+  // Replace the project name and backend port in the files
+  replaceTemplateVariables(
+    {
+      project_name: projectName,
+      be_port: bePort.slice(0, -1),
+    },
+    [
+      path.join(projectPath, 'package.json'),
+      path.join(projectPath, '.env.docker.template'),
+      path.join(projectPath, '.env.local.template'),
+      path.join(projectPath, 'src/server.ts'),
+      path.join(projectPath, 'docker-compose.yml'),
+      path.join(projectPath, 'Dockerfile'),
+    ]
+  );
 
   // Create the .env files
   removeTemplateExtension(projectPath, '.env.local.template');
@@ -73,6 +85,9 @@ function createExpressProject(projectName) {
 
   // Initialize a new git repo
   initializeGitRepository(projectPath);
+
+  // Initialize local supabase
+  initializeLocalSupabase(projectPath, bePort);
 }
 
 function createNextJsProject(projectName) {
@@ -84,11 +99,16 @@ function createNextJsProject(projectName) {
   console.log(`Copied template from ${templatePath} to ${projectPath}`);
 
   // Updating files to use user's project name input
-  replaceProjectName(projectName, [
-    path.join(projectPath, 'package.json'),
-    path.join(projectPath, 'docker-compose.yml'),
-    // Add other file paths that needs 'project_name' updated
-  ]);
+  replaceTemplateVariables(
+    {
+      project_name: projectName,
+    },
+    [
+      path.join(projectPath, 'package.json'),
+      path.join(projectPath, 'docker-compose.yml'),
+      // Add other file paths that needs 'project_name' updated
+    ]
+  );
 
   // Create the .env.local template file
   createEnvLocalFile(

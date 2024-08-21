@@ -15,7 +15,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - '8100:8100'
+      - '{{be_port}}8:{{be_port}}8'
     networks:
       - supabase_network_express-{{project_name}}
 

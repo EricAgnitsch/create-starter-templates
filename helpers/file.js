@@ -30,20 +30,16 @@ function applyTemplate(filePath, data) {
   console.log(`Template applied to ${filePath}`);
 }
 
-function replaceProjectName(projectName, filesToReplace) {
-  const data = { project_name: projectName };
-
-  console.log(`Applying template to replace project name in file...`);
+function replaceTemplateVariables(data, filesToReplace) {
+  console.log(`Applying template to replace variables in files...`);
   filesToReplace.forEach((file) => {
     applyTemplate(file, data);
   });
-  console.log(
-    `Template applied for all instances of project name -- ${projectName}`
-  );
+  console.log(`Template applied for all instances of ${data}`);
 }
 
 module.exports = {
   createEnvLocalFile,
   removeTemplateExtension,
-  replaceProjectName,
+  replaceTemplateVariables,
 };
